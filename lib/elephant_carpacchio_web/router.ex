@@ -18,8 +18,7 @@ defmodule ElephantCarpacchioWeb.Router do
   scope "/", ElephantCarpacchioWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
-    live "/calculator", CalculationLive
+    live "/", CalculationLive
   end
 
   # Other scopes may use custom stacks.
