@@ -7,8 +7,8 @@ defmodule ElephantCarpacchioWeb.CalculationLive do
     <h1>Sales Price Calculator</h1>
 
     <.form for={@form} phx-submit="calculate">
-      <.input type="number" readonly field={@form[:count]} label="How many items ?" value={5} />
-      <.input type="number" readonly field={@form[:price]} label="Price per item ?" value={4} />
+      <.input type="number" field={@form[:count]} label="How many items ?" value={nil} />
+      <.input type="number" field={@form[:price]} label="Price per item ?" value={nil} />
 
       <.input field={@form[:state]} options={~w[California]} type="select"></.input>
 
@@ -30,11 +30,13 @@ defmodule ElephantCarpacchioWeb.CalculationLive do
 
   @impl Phoenix.LiveView
   def handle_event("calculate", params, socket) do
-    # count = params |> Map.fetch!("count") |> String.to_integer()
-    # price_per_item = params |> Map.fetch!("price") |> String.to_integer()
-    #
-    # result = count * price_per_item
+    count = params |> Map.fetch!("count") |> String.to_integer()
+    price_per_item = params |> Map.fetch!("price") |> String.to_integer()
 
-    {:noreply, socket |> assign(:result, 21.65)}
+    result = count * price_per_item * tax_rate(params["state"])
+
+    {:noreply, socket |> assign(:result, result)}
   end
+
+  defp tax_rate("California"), do: 1.0825
 end
