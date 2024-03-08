@@ -7,8 +7,10 @@ defmodule ElephantCarpacchioWeb.CalculationLive do
     <h1>Sales Price Calculator</h1>
 
     <.form for={@form} phx-submit="calculate">
-      <.input readonly field={@form[:count]} label="How many items ?" value={5} />
-      <.input readonly field={@form[:price]} label="Price per item ?" value={4} />
+      <.input type="number" readonly field={@form[:count]} label="How many items ?" value={5} />
+      <.input type="number" readonly field={@form[:price]} label="Price per item ?" value={4} />
+
+      <.input field={@form[:state]} options={~w[California]} type="select"></.input>
 
       <.button type="submit" class="mt-8">
         Checkout
@@ -33,6 +35,6 @@ defmodule ElephantCarpacchioWeb.CalculationLive do
     #
     # result = count * price_per_item
 
-    {:noreply, socket |> assign(:result, 20)}
+    {:noreply, socket |> assign(:result, 21.65)}
   end
 end
