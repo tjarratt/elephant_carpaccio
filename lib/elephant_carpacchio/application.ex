@@ -10,7 +10,8 @@ defmodule ElephantCarpacchio.Application do
     children = [
       ElephantCarpacchioWeb.Telemetry,
       ElephantCarpacchio.Repo,
-      {DNSCluster, query: Application.get_env(:elephant_carpacchio, :dns_cluster_query) || :ignore},
+      {DNSCluster,
+       query: Application.get_env(:elephant_carpacchio, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: ElephantCarpacchio.PubSub},
       # Start the Finch HTTP client for sending emails
       {Finch, name: ElephantCarpacchio.Finch},
