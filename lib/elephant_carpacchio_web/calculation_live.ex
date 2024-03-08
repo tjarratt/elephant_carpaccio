@@ -10,7 +10,7 @@ defmodule ElephantCarpacchioWeb.CalculationLive do
       <.input type="number" field={@form[:count]} label="How many items ?" value={nil} />
       <.input type="number" field={@form[:price]} label="Price per item ?" value={nil} />
 
-      <.input field={@form[:state]} options={~w[California Nevada]} type="select"></.input>
+      <.input field={@form[:state]} options={~w[California Nevada Texas]} type="select"></.input>
 
       <.button type="submit" class="mt-8">
         Checkout
@@ -40,4 +40,5 @@ defmodule ElephantCarpacchioWeb.CalculationLive do
 
   defp tax_rate("California"), do: 1.0825
   defp tax_rate("Nevada"), do: 1.08
+  defp tax_rate("Texas"), do: 1.0625
 end
