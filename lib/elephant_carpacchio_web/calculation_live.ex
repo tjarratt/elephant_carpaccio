@@ -33,10 +33,13 @@ defmodule ElephantCarpacchioWeb.CalculationLive do
     count = params |> Map.fetch!("count") |> String.to_integer()
     price_per_item = params |> Map.fetch!("price") |> String.to_integer()
 
-    result = count * price_per_item * tax_rate(params["state"])
+    result = count * price_per_item * tax_rate(params["state"]) |> apply_discount()
 
     {:noreply, socket |> assign(:result, result)}
   end
+
+  defp apply_discount(total) when total > 1_000, do: total * 0.97
+  defp apply_discount(total), do: total
 
   defp tax_rate("California"), do: 1.0825
   defp tax_rate("Nevada"), do: 1.08
