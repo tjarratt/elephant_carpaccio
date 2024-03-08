@@ -38,6 +38,7 @@ defmodule ElephantCarpacchioWeb.CalculationLive do
     {:noreply, socket |> assign(:result, result)}
   end
 
+  defp apply_discount(total) when total > 5_000, do: total * 0.95
   defp apply_discount(total) when total > 1_000, do: total * 0.97
   defp apply_discount(total), do: total
 
