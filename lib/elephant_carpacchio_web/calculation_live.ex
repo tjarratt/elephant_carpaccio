@@ -4,13 +4,13 @@ defmodule ElephantCarpacchioWeb.CalculationLive do
   @impl Phoenix.LiveView
   def render(assigns) do
     ~H"""
-    <h1>Sales Price Calculator</h1>
+    <.header>Easy Self-Checkout</.header>
 
     <.form for={@form} phx-submit="calculate">
       <.input type="number" field={@form[:count]} label="How many items ?" value={nil} />
       <.input type="number" field={@form[:price]} label="Price per item ?" value={nil} />
 
-      <.input field={@form[:state]} options={~w[California Nevada Texas Alabama Utah]} type="select"></.input>
+      <.input type="select" field={@form[:state]} options={~w[California Nevada Texas Alabama Utah]} ></.input>
 
       <.button type="submit" class="mt-8">
         Checkout
@@ -38,6 +38,9 @@ defmodule ElephantCarpacchioWeb.CalculationLive do
     {:noreply, socket |> assign(:result, result)}
   end
 
+  defp apply_discount(total) when total > 50_000, do: total * 0.85
+  defp apply_discount(total) when total > 10_000, do: total * 0.90
+  defp apply_discount(total) when total > 7_000, do: total * 0.93
   defp apply_discount(total) when total > 5_000, do: total * 0.95
   defp apply_discount(total) when total > 1_000, do: total * 0.97
   defp apply_discount(total), do: total
