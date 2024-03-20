@@ -10,8 +10,7 @@ defmodule ElephantCarpacchioWeb.CalculationLive do
       <.input type="number" field={@form[:count]} label="How many items ?" value={nil} />
       <.input type="number" field={@form[:price]} label="Price per item ?" value={nil} />
 
-      <.input type="select" field={@form[:state]} options={~w[California Nevada Texas Alabama Utah]}>
-      </.input>
+      <.input type="select" field={@form[:state]} label="US State" options={~w[California Nevada Texas Alabama Utah]} />
 
       <.button type="submit" class="mt-8">
         Checkout
