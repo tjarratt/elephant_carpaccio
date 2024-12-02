@@ -6,6 +6,7 @@ config :elephant_carpacchio, ElephantCarpacchio.Repo,
   password: "postgres",
   hostname: "localhost",
   database: "elephant_carpacchio_dev",
+  socket_dir: "/tmp/postgres",
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
